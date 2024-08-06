@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable, of, from, fromEvent } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -28,7 +30,27 @@ export class AppComponent implements AfterViewInit{
   array1 = [1, 2, 3 ,4 ,5, 6];
   array2 = ['A', 'B', 'C'];
   // myObservable = of(this.array1, this.array2, 2, 4, 5);
-  myObservable = from(this.array2);
+  myObservable = from(this.array1).pipe(
+    map((val) => {
+    return val * 10;
+    }),
+    filter((val) => {
+      return val % 4 === 0;
+    })
+  );
+
+  // transformObs = this.myObservable.pipe(
+  //   map((val) => {
+  //   return val * 10;
+  //   }),
+  //   filter((val) => {
+  //     return val % 4 === 0;
+  //   })
+  // );
+
+  // filterObs = this.transformObs.pipe(filter((val) => {
+  //   return val % 4 === 0;
+  // }))
 
 
   GetAsyncData() {
@@ -47,18 +69,18 @@ export class AppComponent implements AfterViewInit{
     })
   }
 
-  buttonClicked() {
-    fromEvent(this.createBtn?.nativeElement, 'click')
-    .subscribe({
-      next: (data) => {
-        this.data.push(`Item ${this.data.length + 1}`)
-        console.log(data)
-     }
-    })
-  }
+  // buttonClicked() {
+  //   fromEvent(this.createBtn?.nativeElement, 'click')
+  //   .subscribe({
+  //     next: (data) => {
+  //       this.data.push(`Item ${this.data.length + 1}`)
+  //       console.log(data)
+  //    }
+  //   })
+  // }
 
   ngAfterViewInit() {
-    this.buttonClicked();
+    // this.buttonClicked();
   }
 
 
