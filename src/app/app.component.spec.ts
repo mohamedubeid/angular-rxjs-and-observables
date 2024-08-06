@@ -12,16 +12,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-rxjs-and-observables'`, () => {
+  it(`should have as title 'angular-observables'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-rxjs-and-observables');
+    expect(app.title).toEqual('angular-observables');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-rxjs-and-observables app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-observables app is running!');
   });
 });
