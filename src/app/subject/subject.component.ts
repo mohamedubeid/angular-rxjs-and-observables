@@ -15,17 +15,17 @@ export class SubjectComponent implements OnInit{
 
 
     // const obs = new Subject();                                                        //MultiCast
-    const obs = new BehaviorSubject<number>(100);
+    // const obs = new BehaviorSubject<number>(100);
 
-    obs.subscribe((data) => console.log("Subscriber 1", data));
+    // obs.subscribe((data) => console.log("Subscriber 1", data));
     
-    obs.subscribe((data) => console.log("Subscriber 2", data))
+    // obs.subscribe((data) => console.log("Subscriber 2", data))
     
-    obs.next(2020);
+    // obs.next(2020);
 
-    obs.subscribe((data) => console.log("Subscriber 3", data));
+    // obs.subscribe((data) => console.log("Subscriber 3", data));
 
-    obs.next(2023);
+    // obs.next(2023);
 
 
 
@@ -62,5 +62,29 @@ export class SubjectComponent implements OnInit{
     // });
 
     // data.subscribe(subject);
+
+
+
+    const promise = new Promise((resolve, reject) => {
+      console.log("Promise is called!!");
+      resolve(100);
+      resolve(200); //only emit one value
+      resolve(300); //only emit one value
+
+    });
+    promise.then((data) => {
+      console.log(data, 'data promise')
+    })
+
+    const obs = new Observable((sub) => {
+      console.log("Observable is called!!");
+      sub.next(100);
+      sub.next(200);
+      sub.next(300);
+
+    });
+    obs.subscribe((data) => {
+      console.log(data, "observabel data.")
+    });
   }
 }
