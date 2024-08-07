@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TaskService } from '../Services/task.service';
 
 @Component({
   selector: 'app-new-task',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class NewTaskComponent {
   newTask: string = '';
+  taskSer: TaskService = inject(TaskService);
+  OncreateTask() {
+    this.taskSer.OnCreateTask(this.newTask);
+  }
 }
