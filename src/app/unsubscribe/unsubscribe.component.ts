@@ -7,5 +7,18 @@ import { interval } from 'rxjs';
   styleUrls: ['./unsubscribe.component.css']
 })
 export class UnsubscribeComponent {
-  
+  counter = interval(1000);
+  numArr: number[] = [];
+
+  theSubscriber: any;
+
+  OnSubscribe() {
+    this.theSubscriber = this.counter.subscribe((data) => {
+      this.numArr.push(data);
+    })
+  }
+
+  OnUnsubscribe() {
+    this.theSubscriber.unsubscribe();
+  }
 }
